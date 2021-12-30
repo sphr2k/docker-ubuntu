@@ -1,9 +1,17 @@
 FROM ubuntu
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV container docker
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
 
-#RUN sed -i 's|http://de.|http://|g' /etc/apt/sources.list
-RUN apt-get update 
-RUN apt-get install -y --no-install-recommends bash-completion curl wget software-properties-common ca-certificates nano git net-tools iputils-ping gpg build-essential automake autoconf
+RUN sed -i 's/# deb/deb/g' /etc/apt/sources.list
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       bash-completion curl wget software-properties-common ca-certificates \
+       nano git net-tools iputils-ping gpg build-essential automake autoconf \
+       lsb-release sudo iproute2 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD tail -f /dev/null
