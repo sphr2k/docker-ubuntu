@@ -15,15 +15,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
-cat <<EOT >> /etc/bash.bashrc
-
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-EOT
+RUN echo $' \n\
+if ! shopt -oq posix; then \n\
+  if [ -f /usr/share/bash-completion/bash_completion ]; then \n\
+    . /usr/share/bash-completion/bash_completion \n\
+  elif [ -f /etc/bash_completion ]; then \n\
+    . /etc/bash_completion \n\
+  fi \n\
+fi \n\ '  >> /etc/bash.bashrc
 
 CMD tail -f /dev/null
