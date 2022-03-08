@@ -14,6 +14,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+<<<<<<< HEAD
 
 RUN echo ' \n\
 if ! shopt -oq posix; then \n\
@@ -24,4 +25,6 @@ if ! shopt -oq posix; then \n\
   fi \n\
 fi \n'  >> /etc/bash.bashrc
 
+=======
+>>>>>>> parent of 7e98e73 (Update Dockerfile)
 CMD tail -f /dev/null
